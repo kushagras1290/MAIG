@@ -1,0 +1,14 @@
+[project]
+name = "mojo-ai-inference-gateway"
+version = "0.1.0"
+channels = ["conda-forge", "https://conda.modular.com/max"]
+platforms = ["linux-64", "osx-arm64", "osx-64"]
+
+[tasks]
+test = "pytest -q"
+api = "uvicorn mojo_ai_gateway.main:app --reload --host 0.0.0.0 --port 8000"
+bench = "python benchmarks/bench_vector_similarity.py --vectors 5000 --dims 768"
+
+[dependencies]
+python = ">=3.11,<3.13"
+mojo = "*"

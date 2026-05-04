@@ -1,0 +1,11 @@
+services:
+  gateway:
+    build: .
+    env_file: .env.example
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
